@@ -1,0 +1,11 @@
+{
+	"id":1,
+	"device_user_id":1,
+	"medical_personnel_id":12,
+	"name":"TestAuto put",
+	"creation_date":"2020-06-29T00:00:00.000Z",
+	"difficulty":5,
+	"price":30,
+	"done":0,
+	"rating":null
+}
