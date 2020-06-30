@@ -1,9 +1,9 @@
 {
-	"name": "Automation",
-    "last_name": "Testing", 
+	"name": "Carina API",
+    "last_name": "Test Automation", 
     "birth_date": "1997-08-03",
-    "document_number": "40580", 
-    "email": "automationtesting@gmail.com", 
-    "password": "automat", 
+    "document_number": "${document_number}", 
+    "email": "${email}@gmail.com", 
+    "password": "testing", 
     "document_type": 1
 }

@@ -1,18 +1,17 @@
 {
-    "id": "",
-    "name": "Estani",
-    "last_name": "Perez Peña",
-    "birth_date": "1997-02-02T00:00:00.000Z",
+    "id": 29,
+    "name": "Tes2",
+    "last_name": "User",
+    "birth_date": "1959-04-02T00:00:00.000Z",
     "gender": null,
     "document_type_id": 1,
-    "document_number": "40392534",
-    "email": "estani@gmail.com",
+    "document_number": "2",
+    "email": "prueba2@gmail.com",
     "password": "",
     "city_id": null,
     "address": null,
     "weight": null,
     "height": null,
     "insurance_id": null,
-    "insurance_number": null,
-    "user_id": ""
+    "insurance_number": null
 }

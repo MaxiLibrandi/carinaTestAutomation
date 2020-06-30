@@ -1,5 +1,7 @@
 package com.solvd.CarinaTest;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
@@ -13,13 +15,29 @@ import com.solvd.CarinaTest.api.workout.DeleteWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.GetWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.PostWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.PutWorkoutMethod;
+import com.solvd.CarinaTest.login.PostSignInMethod;
 
-public class APISampleTest extends AbstractTest{
+import io.restassured.path.json.JsonPath;
+
+public class APISampleTest {
 	
+	private final static Logger LOGGER = LogManager.getLogger(APISampleTest.class);
+	/*	
 	@Test(description = "Test GET Device User")
     @MethodOwner(owner = "Maxi")
     public void testGetDeviceUser() {
+		//Login as Device User to get a token 
+		PostSignInMethod postSignInMethod = new PostSignInMethod("api/login/user_login.properties");
+		postSignInMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+        String rs = postSignInMethod.callAPI().asString();
+        postSignInMethod.validateResponse();
+        
+        //Get token from response
+        String token = JsonPath.from(rs).getString("token");
+        
+        //Test GET Device User method
         GetDeviceUserMethod getDeviceUserMethod = new GetDeviceUserMethod();
+        getDeviceUserMethod.setHeaders("x-access-token=" + token);
         getDeviceUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         getDeviceUserMethod.callAPI();
         getDeviceUserMethod.validateResponse();
@@ -33,7 +51,8 @@ public class APISampleTest extends AbstractTest{
         postDeviceUserMethod.callAPI();
         postDeviceUserMethod.validateResponse();
     }
-	
+	*/
+	/*
 	@Test(description = "Test GET Workout")
     @MethodOwner(owner = "Maxi")
     public void testGetWorkout() {
@@ -99,4 +118,5 @@ public class APISampleTest extends AbstractTest{
         deleteEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteEmergencyContactMethod.callAPI();
     }	
+    */
 }
