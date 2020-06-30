@@ -1,7 +1,7 @@
 {
-		"device_user_id":1,
-        "name":"TestAuto put",
-        "creation_date":"2020-06-29",
+		"device_user_id":5,
+        "name":"Test Automation Workout MODIFIED",
+        "creation_date":"2020-06-30",
         "difficulty":5,
-        "price":30.0
+        "price":40.0
 }
