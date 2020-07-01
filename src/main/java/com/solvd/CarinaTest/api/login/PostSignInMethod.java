@@ -1,4 +1,4 @@
-package com.solvd.CarinaTest.login;
+package com.solvd.CarinaTest.api.login;
 
 import com.qaprosoft.carina.core.foundation.api.AbstractApiMethodV2;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;

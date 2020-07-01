@@ -1,7 +1,5 @@
 package com.solvd.CarinaTest;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
@@ -11,18 +9,16 @@ import com.solvd.CarinaTest.api.emergencyContact.DeleteEmergencyContactMethod;
 import com.solvd.CarinaTest.api.emergencyContact.GetEmergencyContactMethod;
 import com.solvd.CarinaTest.api.emergencyContact.PostEmergencyContactMethod;
 import com.solvd.CarinaTest.api.emergencyContact.PutEmergencyContactMethod;
+import com.solvd.CarinaTest.api.login.PostSignInMethod;
 import com.solvd.CarinaTest.api.workout.DeleteWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.GetWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.PostWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.PutWorkoutMethod;
-import com.solvd.CarinaTest.login.PostSignInMethod;
 
 import io.restassured.path.json.JsonPath;
 
 public class APISampleTest {
 	
-	private final static Logger LOGGER = LogManager.getLogger(APISampleTest.class);
-	/*	
 	@Test(description = "Test GET Device User")
     @MethodOwner(owner = "Maxi")
     public void testGetDeviceUser() {
@@ -51,8 +47,7 @@ public class APISampleTest {
         postDeviceUserMethod.callAPI();
         postDeviceUserMethod.validateResponse();
     }
-	*/
-	
+    
 	@Test(description = "Test Workout Methods")
     @MethodOwner(owner = "Maxi")
     public void testWorkout() {
@@ -96,39 +91,48 @@ public class APISampleTest {
         deleteWorkoutMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteWorkoutMethod.callAPI();
     }
-	
-	/*
-	@Test(description = "Test GET EmergencyContact")
+
+	@Test(description = "Test EmergencyContact Methods")
     @MethodOwner(owner = "Maxi")
-    public void testGetEmergencyContact() {
+    public void testEmergencyContact() {
+		//Login as User to get a token 
+		PostSignInMethod postSignInMethod = new PostSignInMethod("api/login/user_login.properties");
+		postSignInMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+        String rsSignIn = postSignInMethod.callAPI().asString();
+        postSignInMethod.validateResponse();
+        
+        //Get token from response
+        String token = JsonPath.from(rsSignIn).getString("token");
+        
+        //Test POST EmergencyContact
+        PostEmergencyContactMethod postEmergencyContactMethod = new PostEmergencyContactMethod();
+        postEmergencyContactMethod.setHeaders("x-access-token=" + token);
+        postEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+        String rsPostEmergencyContact = postEmergencyContactMethod.callAPI().asString();
+        postEmergencyContactMethod.validateResponse();
+        
+        //Get id of inserted Emergency Contact
+        Integer emergencyContactId = JsonPath.from(rsPostEmergencyContact).getInt("insertId");
+        
+        //Test GET EmergencyContact
         GetEmergencyContactMethod getEmergencyContactMethod= new GetEmergencyContactMethod();
+        getEmergencyContactMethod.replaceUrlPlaceholder("emergency_contact_id", emergencyContactId.toString());
         getEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         getEmergencyContactMethod.callAPI();
         getEmergencyContactMethod.validateResponse();
-    }
-	
-	@Test(description = "Test POST EmergencyContact")
-    @MethodOwner(owner = "Maxi")
-    public void testPostEmergencyContact() {
-        PostEmergencyContactMethod postEmergencyContactMethod = new PostEmergencyContactMethod();
-        postEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        postEmergencyContactMethod.callAPI();
-    }
-	
-	@Test(description = "Test PUT EmergencyContact")
-    @MethodOwner(owner = "Maxi")
-    public void testPutEmergencyContact() {
+        
+        //Test PUT EmergencyContact        
         PutEmergencyContactMethod putEmergencyContactMethod = new PutEmergencyContactMethod();
+        putEmergencyContactMethod.setHeaders("x-access-token=" + token);
+        putEmergencyContactMethod.replaceUrlPlaceholder("emergency_contact_id", emergencyContactId.toString());
         putEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         putEmergencyContactMethod.callAPI();
-    }
-	
-	@Test(description = "Test Delete EmergencyContact")
-    @MethodOwner(owner = "Maxi")
-    public void testDeleteEmergencyContact() {
+        putEmergencyContactMethod.validateResponse();
+        
+        //Test DELETE EmergencyContact
         DeleteEmergencyContactMethod deleteEmergencyContactMethod = new DeleteEmergencyContactMethod();
+        deleteEmergencyContactMethod.replaceUrlPlaceholder("emergency_contact_id", emergencyContactId.toString());
         deleteEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteEmergencyContactMethod.callAPI();
-    }	
-    */
+    }
 }

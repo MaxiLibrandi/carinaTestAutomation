@@ -1,7 +1,7 @@
 {
-	"id":1,
-	"device_user_id":22,
-	"name":"Emergency1",
-	"email":"emergency1@gma.co",
-	"relation":"Relation 1"
+	"id": "skip",
+	"device_user_id": "skip",
+	"name": "Emergency Contact Automation",
+	"email": "automationemergencycontact@gma.com",
+	"relation": "Relation Auto test"
 }
