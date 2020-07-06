@@ -10,22 +10,22 @@ import com.solvd.CarinaTest.gui.pages.HomePage;
 
 public class HeaderButtons extends AbstractUIObject{
 	
-	@FindBy(xpath = "//div[contains(@class,'header__botonera')]//li[contains(@class,'home')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'home')]//a")
 	private ExtendedWebElement homeButton; 
 	
-	@FindBy(xpath = "//div[contains(@class,'header__botonera')]//li[contains(@class,'siuguarani')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'siuguarani')]//a")
 	private ExtendedWebElement guaraniButton;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__botonera')]//li[contains(@class,'telefonos')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'telefonos')]//a")
 	private ExtendedWebElement phonesButton;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__botonera')]//li[contains(@class,'webmailunicen')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'webmailunicen')]//a")
 	private ExtendedWebElement teachersButton;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__botonera')]//li[contains(@class,'mailalumnos')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'mailalumnos')]//a")
 	private ExtendedWebElement studentsButton;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__botonera')]//li[contains(@class,'documentos')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'documentos')]//a")
 	private ExtendedWebElement documentsButton;
 	
 	public HeaderButtons(WebDriver driver, SearchContext searchContext) {

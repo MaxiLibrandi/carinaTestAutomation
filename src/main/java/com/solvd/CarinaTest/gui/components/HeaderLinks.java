@@ -9,25 +9,25 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class HeaderLinks extends AbstractUIObject{
 
-	@FindBy(xpath = "//div[contains(@class,'header__region')]//li[contains(@class,'1634')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'1634')]//a")
 	private ExtendedWebElement newStudentsLink;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__region')]//li[contains(@class,'1638')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'1638')]//a")
 	private ExtendedWebElement studentsLink;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__region')]//li[contains(@class,'1643')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'1643')]//a")
 	private ExtendedWebElement teachersLink;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__region')]//li[contains(@class,'1648')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'1648')]//a")
 	private ExtendedWebElement notTeachersLink;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__region')]//li[contains(@class,'1653')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'1653')]//a")
 	private ExtendedWebElement graduatesLink;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__region')]//li[contains(@class,'1655')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'1655')]//a")
 	private ExtendedWebElement schoolsLink;
 	
-	@FindBy(xpath = "//div[contains(@class,'header__region')]//li[contains(@class,'1657')]//a")
+	@FindBy(xpath = ".//li[contains(@class,'1657')]//a")
 	private ExtendedWebElement enterprisesLink;
 	
 	public HeaderLinks(WebDriver driver, SearchContext searchContext) {

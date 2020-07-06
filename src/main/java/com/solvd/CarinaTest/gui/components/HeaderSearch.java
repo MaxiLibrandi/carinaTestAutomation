@@ -9,10 +9,10 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class HeaderSearch extends AbstractUIObject{
 
-	@FindBy(xpath = "//div[contains(@class,'header__botonera')]//input[contains(@id,'edit-search-block-form--2')]")
+	@FindBy(xpath = ".//input[contains(@id,'edit-search-block-form--2')]")
 	private ExtendedWebElement searchTextField;
 	
-	@FindBy(xpath ="//div[contains(@class,'header__botonera')]//input[@id='edit-submit']")
+	@FindBy(xpath =".//input[@id='edit-submit']")
 	private ExtendedWebElement searchButton;
 	
 	public HeaderSearch(WebDriver driver, SearchContext searchContext) {

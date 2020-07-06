@@ -9,19 +9,19 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class FooterPanel extends AbstractUIObject{
 	
-	@FindBy(xpath ="//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]//div[1]//div[contains(@class,'field-content')]//a")
+	@FindBy(xpath ="./div[1]/div[2]/div/a")
 	private ExtendedWebElement guaraniPanel;
 
-	@FindBy(xpath ="//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]//div[2]//div[contains(@class,'field-content')]//a")
+	@FindBy(xpath ="./div[2]/div[2]/div/a")
 	private ExtendedWebElement moodlePanel;
 
-	@FindBy(xpath ="//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]//div[3]//div[contains(@class,'field-content')]//a")
+	@FindBy(xpath ="./div[3]/div[2]/div/a")
 	private ExtendedWebElement unicenPanel;
 
-	@FindBy(xpath ="//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]//div[4]//div[contains(@class,'field-content')]//a")
+	@FindBy(xpath ="./div[4]/div[2]/div/a")
 	private ExtendedWebElement cefcePanel;
 
-	@FindBy(xpath ="//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]//div[5]//div[contains(@class,'field-content')]//a")
+	@FindBy(xpath ="./div[5]/div[2]/div/a")
 	private ExtendedWebElement libraryPanel;
 	
 	public FooterPanel(WebDriver driver, SearchContext searchContext) {

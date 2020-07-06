@@ -9,16 +9,16 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class FooterMenu extends AbstractUIObject{
 	
-	@FindBy(xpath = "//footer//strong//a[1]")
+	@FindBy(xpath = ".//strong//a[1]")
 	private ExtendedWebElement facultyLink;
 
-	@FindBy(xpath = "//footer//strong//a[2]")
+	@FindBy(xpath = ".//strong//a[2]")
 	private ExtendedWebElement universityLink;
 
-	@FindBy(xpath = "//footer//strong//a[3]")
+	@FindBy(xpath = ".//strong//a[3]")
 	private ExtendedWebElement locationLink;
 
-	@FindBy(xpath = "//footer//p/a")
+	@FindBy(xpath = ".//p/a")
 	private ExtendedWebElement webmasterLink;
 	
 	public FooterMenu(WebDriver driver, SearchContext searchContext) {

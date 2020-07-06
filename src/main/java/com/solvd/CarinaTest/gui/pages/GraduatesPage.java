@@ -15,9 +15,9 @@ import com.solvd.CarinaTest.gui.components.HeaderLinks;
 import com.solvd.CarinaTest.gui.components.HeaderLogo;
 import com.solvd.CarinaTest.gui.components.HeaderSearch;
 
-public class HomePage extends AbstractPage{
+public class GraduatesPage extends AbstractPage{
 
-    private static final Logger LOGGER = Logger.getLogger(HomePage.class);
+    private static final Logger LOGGER = Logger.getLogger(GraduatesPage.class);
     
     @FindBy(xpath = "//div[contains(@class,'header__botonera')]")
     private HeaderButtons headerButtons;
@@ -37,34 +37,23 @@ public class HomePage extends AbstractPage{
     @FindBy(xpath = "//footer")
     private FooterMenu footerMenu;
     
-	@FindBy(xpath = "//div[contains(@id,'bloque-noticia')]//div[contains(@class, 'views-field-title')]//a")
-	private List<ExtendedWebElement> titlesList; 
+	@FindBy(xpath = "//div[@class='colgroup__cols1-item']//a")
+	private List<ExtendedWebElement> socialNetworkList; 
 	
-	@FindBy(xpath = "//ul[contains(@class,'menu')]//li[contains(@class,'2426')]//a")
-	private ExtendedWebElement academicCalendarLink;
-	
-	public HomePage(WebDriver driver) {
+	public GraduatesPage(WebDriver driver) {
 		super(driver);
 	}
-
-	public void selectTitle(String title) {
-        LOGGER.info("selecting '" + title + "' new...");
-        for (ExtendedWebElement titlesLink : titlesList) {
-            String currentNew = titlesLink.getText();
-            LOGGER.info("currentNew: " + currentNew);
-            if (title.equalsIgnoreCase(currentNew)) {
-            	titlesLink.click();
-                LOGGER.info("Clicked");
+	
+	public void selectSocialNetwork(String socialNetwork) {
+        LOGGER.info("selecting '" + socialNetwork + "' social network...");
+        for (ExtendedWebElement socialNetworkLink : socialNetworkList) {
+            String currentSocialNetwork = socialNetworkLink.getText();
+            LOGGER.info("currentNew: " + currentSocialNetwork);
+            if (socialNetwork.equalsIgnoreCase(currentSocialNetwork)) {
+            	socialNetworkLink.click();
+                LOGGER.info("Clicked" + currentSocialNetwork);
             }
         }
     }
-	
-	public AcademicCalendarPage openAcademicCalendarPage() {
-		academicCalendarLink.click();
-		return new AcademicCalendarPage(getDriver());
-	}
-	
-	public void selectFacultyLinkFooterMenu() {
-		footerMenu.openFacultyPage();
-	}
+
 }

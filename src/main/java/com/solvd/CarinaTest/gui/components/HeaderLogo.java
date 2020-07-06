@@ -10,7 +10,7 @@ import com.solvd.CarinaTest.gui.pages.HomePage;
 
 public class HeaderLogo extends AbstractUIObject{
 
-	@FindBy(xpath = "//div[contains(@class,'header__logo')]//a")
+	@FindBy(xpath = ".//a")
 	private ExtendedWebElement home; 
 	
 	public HeaderLogo(WebDriver driver, SearchContext searchContext) {
