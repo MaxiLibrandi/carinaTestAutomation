@@ -13,5 +13,11 @@
     "weight": null,
     "height": null,
     "insurance_id": null,
-    "insurance_number": null
+    "insurance_number": null,
+    "diseases": [
+        
+    ],
+    "languages": [
+        
+    ]
 }

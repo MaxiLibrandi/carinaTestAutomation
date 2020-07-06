@@ -18,7 +18,7 @@ import com.solvd.CarinaTest.api.workout.PutWorkoutMethod;
 import io.restassured.path.json.JsonPath;
 
 public class APISampleTest {
-	
+	/*
 	@Test(description = "Test GET Device User")
     @MethodOwner(owner = "Maxi")
     public void testGetDeviceUser() {
@@ -135,4 +135,5 @@ public class APISampleTest {
         deleteEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteEmergencyContactMethod.callAPI();
     }
+    */
 }
