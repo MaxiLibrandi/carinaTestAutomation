@@ -37,7 +37,7 @@ public class StudiesPage extends AbstractPage{
     @FindBy(xpath = "//footer")
     private FooterMenu footerMenu;
     
-	@FindBy(xpath = "//div[contains(@class,'pane-noticias')]//td")
+	@FindBy(xpath = "//div[contains(@class,'pane-noticias')]//td//div[contains(@class,'field-title')]//a")
 	private List<ExtendedWebElement> newsList; 
 	
 	public StudiesPage(WebDriver driver) {
@@ -52,7 +52,12 @@ public class StudiesPage extends AbstractPage{
             if (title.equalsIgnoreCase(currentNew)) {
             	titlesLink.click();
                 LOGGER.info("Clicked" + currentNew);
+                return;
             }
         }
     }
+	
+	public void clickUniversityLinkFooterMenu() {
+		footerMenu.openUniversityPage();
+	}
 }

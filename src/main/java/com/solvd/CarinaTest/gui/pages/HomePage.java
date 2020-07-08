@@ -36,13 +36,23 @@ public class HomePage extends AbstractPage{
     
     @FindBy(xpath = "//footer")
     private FooterMenu footerMenu;
-    
-	@FindBy(xpath = "//div[contains(@id,'bloque-noticia')]//div[contains(@class, 'views-field-title')]//a")
-	private List<ExtendedWebElement> titlesList; 
 	
-	@FindBy(xpath = "//ul[contains(@class,'menu')]//li[contains(@class,'2426')]//a")
+	@FindBy(xpath = "//ul[contains(@class,'menu')]//li[contains(@class,'menu-mlid-667')]/a")
+	private ExtendedWebElement studiesLink;
+	
+	@FindBy(xpath = "//ul[contains(@class,'menu')]//li[contains(@class,'menu-mlid-2426')]//a")
 	private ExtendedWebElement academicCalendarLink;
+
+	@FindBy(xpath = "//ul[contains(@class,'menu')]//li[contains(@class,'menu-mlid-686')]//a")
+	private ExtendedWebElement degreeCareersLink;
 	
+	@FindBy(xpath = "//ul[contains(@class,'menu')]//li[contains(@class,'menu-mlid-1633')]//a")
+	private ExtendedWebElement subjectsLink;
+	
+    
+    @FindBy(xpath = "//div[contains(@id,'bloque-noticia')]//div[contains(@class, 'views-field-title')]//a")
+	private List<ExtendedWebElement> titlesList; 
+    
 	public HomePage(WebDriver driver) {
 		super(driver);
 	}
@@ -55,16 +65,40 @@ public class HomePage extends AbstractPage{
             if (title.equalsIgnoreCase(currentNew)) {
             	titlesLink.click();
                 LOGGER.info("Clicked");
+                return;
             }
         }
     }
+	
+	public StudiesPage openStudiesPage() {
+		studiesLink.click();
+		return new StudiesPage(getDriver());
+	}
 	
 	public AcademicCalendarPage openAcademicCalendarPage() {
 		academicCalendarLink.click();
 		return new AcademicCalendarPage(getDriver());
 	}
 	
-	public void selectFacultyLinkFooterMenu() {
-		footerMenu.openFacultyPage();
+	public DegreeCareersPage openDegreeCareersPage() {
+		degreeCareersLink.click();
+		return new DegreeCareersPage(getDriver());
+	}
+	
+	public SubjectsPage openSubjectsPage() {
+		subjectsLink.click();
+		return new SubjectsPage(getDriver());
+	}
+	
+	public GraduatesPage openGraduatesPage() {
+		return headerLinks.openGraduatesPage();
+	}
+	
+	public HomePage clickHeaderLogo() {
+		return headerLogo.openHomePage();
+	}
+	
+	public void searchHeaderSearch(String query) {
+		headerSearch.search(query);
 	}
 }

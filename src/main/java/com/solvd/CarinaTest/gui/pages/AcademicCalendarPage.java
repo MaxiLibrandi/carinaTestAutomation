@@ -50,7 +50,7 @@ public class AcademicCalendarPage extends AbstractPage{
 		return out;
 	}
 	
-	public void selectMoodleLinkFooterPanel() {
-		footerPanel.openMoodlePage();
+	public HomePage clickHeaderLogo() {
+		return headerLogo.openHomePage();
 	}
 }

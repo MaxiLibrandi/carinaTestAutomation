@@ -52,11 +52,12 @@ public class DegreeCareersPage extends AbstractPage{
             if (career.equalsIgnoreCase(currentCareer)) {
             	careerLink.click();
                 LOGGER.info("Clicked");
+                return;
             }
         }
 	}
 
-	public void selectGuaraniButtonHeaderButtons(){
+	public void clickGuaraniButtonHeaderButtons(){
 		headerButtons.openGuaraniPage();
 	}
 }

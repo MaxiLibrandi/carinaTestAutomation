@@ -47,13 +47,17 @@ public class GraduatesPage extends AbstractPage{
 	public void selectSocialNetwork(String socialNetwork) {
         LOGGER.info("selecting '" + socialNetwork + "' social network...");
         for (ExtendedWebElement socialNetworkLink : socialNetworkList) {
-            String currentSocialNetwork = socialNetworkLink.getText();
+            String currentSocialNetwork = socialNetworkLink.getAttribute("href");
             LOGGER.info("currentNew: " + currentSocialNetwork);
             if (socialNetwork.equalsIgnoreCase(currentSocialNetwork)) {
             	socialNetworkLink.click();
                 LOGGER.info("Clicked" + currentSocialNetwork);
+                return;
             }
         }
     }
 
+	public void clickMoodleLinkFooterPanel() {
+		footerPanel.openMoodlePage();
+	}
 }

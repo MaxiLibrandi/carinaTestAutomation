@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.solvd.CarinaTest.gui.pages.GraduatesPage;
 
 public class HeaderLinks extends AbstractUIObject{
 
@@ -50,8 +51,9 @@ public class HeaderLinks extends AbstractUIObject{
 		notTeachersLink.click();
 	}
 	
-	public void openGradutesPage() {
+	public GraduatesPage openGraduatesPage() {
 		graduatesLink.click();
+		return new GraduatesPage(getDriver());
 	}
 	
 	public void openSchoolsPage() {

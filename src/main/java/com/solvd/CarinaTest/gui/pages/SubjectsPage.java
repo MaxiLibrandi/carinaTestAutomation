@@ -52,7 +52,12 @@ public class SubjectsPage extends AbstractPage{
             if (subject.equalsIgnoreCase(currentSubject)) {
             	subjectLink.click();
                 LOGGER.info("Clicked" + currentSubject);
+                return;
             }
         }
+	}
+	
+	public void clickNewStudentsLinkHeaderLinks() {
+		headerLinks.openNewStudentsPage();
 	}
 }
