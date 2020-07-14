@@ -1,9 +1,9 @@
 {
-	"name": "Carina API",
-    "last_name": "Test Automation", 
-    "birth_date": "1997-08-03",
+	"name": "${name}",
+    "last_name": "${last_name}", 
+    "birth_date": "${birth_date}",
     "document_number": "${document_number}", 
     "email": "${email}@gmail.com", 
-    "password": "testing", 
+    "password": "${password}", 
     "document_type": 1
 }

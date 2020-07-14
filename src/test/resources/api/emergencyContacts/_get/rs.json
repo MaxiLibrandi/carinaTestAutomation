@@ -2,6 +2,6 @@
 	"id": "skip",
 	"device_user_id": "skip",
 	"name": "Emergency Contact Automation",
-	"email": "automationemergencycontact@gma.com",
+	"email": "regex:[a-zA-Z\\d\\_\\.]+@[a-z]+\\.[a-z]{2,4}",
 	"relation": "Relation Auto test"
 }

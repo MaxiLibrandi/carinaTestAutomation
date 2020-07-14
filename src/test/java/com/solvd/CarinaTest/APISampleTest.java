@@ -9,7 +9,7 @@ import com.solvd.CarinaTest.api.emergencyContact.DeleteEmergencyContactMethod;
 import com.solvd.CarinaTest.api.emergencyContact.GetEmergencyContactMethod;
 import com.solvd.CarinaTest.api.emergencyContact.PostEmergencyContactMethod;
 import com.solvd.CarinaTest.api.emergencyContact.PutEmergencyContactMethod;
-import com.solvd.CarinaTest.api.login.PostSignInMethod;
+import com.solvd.CarinaTest.api.login.ILoginService;
 import com.solvd.CarinaTest.api.workout.DeleteWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.GetWorkoutMethod;
 import com.solvd.CarinaTest.api.workout.PostWorkoutMethod;
@@ -17,19 +17,13 @@ import com.solvd.CarinaTest.api.workout.PutWorkoutMethod;
 
 import io.restassured.path.json.JsonPath;
 
-public class APISampleTest {
-	/*
+public class APISampleTest implements ILoginService{
+	
 	@Test(description = "Test GET Device User")
     @MethodOwner(owner = "Maxi")
     public void testGetDeviceUser() {
 		//Login as Device User to get a token 
-		PostSignInMethod postSignInMethod = new PostSignInMethod("api/login/user_login.properties");
-		postSignInMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        String rs = postSignInMethod.callAPI().asString();
-        postSignInMethod.validateResponse();
-        
-        //Get token from response
-        String token = JsonPath.from(rs).getString("token");
+        String token = login("api/login/user_login.properties");
         
         //Test GET Device User method
         GetDeviceUserMethod getDeviceUserMethod = new GetDeviceUserMethod();
@@ -52,13 +46,7 @@ public class APISampleTest {
     @MethodOwner(owner = "Maxi")
     public void testWorkout() {
 		//Login as Medical to get a token 
-		PostSignInMethod postSignInMethod = new PostSignInMethod("api/login/medical_login.properties");
-		postSignInMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        String rsSignIn = postSignInMethod.callAPI().asString();
-        postSignInMethod.validateResponse();
-        
-        //Get token from response
-        String token = JsonPath.from(rsSignIn).getString("token");
+        String token = login("api/login/medical_login.properties");
         
         //Test POST Workout 
         PostWorkoutMethod postWorkoutMethod = new PostWorkoutMethod();
@@ -95,14 +83,8 @@ public class APISampleTest {
 	@Test(description = "Test EmergencyContact Methods")
     @MethodOwner(owner = "Maxi")
     public void testEmergencyContact() {
-		//Login as User to get a token 
-		PostSignInMethod postSignInMethod = new PostSignInMethod("api/login/user_login.properties");
-		postSignInMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        String rsSignIn = postSignInMethod.callAPI().asString();
-        postSignInMethod.validateResponse();
-        
-        //Get token from response
-        String token = JsonPath.from(rsSignIn).getString("token");
+		//Login as Device User to get a token 
+        String token = login("api/login/user_login.properties");
         
         //Test POST EmergencyContact
         PostEmergencyContactMethod postEmergencyContactMethod = new PostEmergencyContactMethod();
@@ -135,5 +117,5 @@ public class APISampleTest {
         deleteEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteEmergencyContactMethod.callAPI();
     }
-    */
+    
 }

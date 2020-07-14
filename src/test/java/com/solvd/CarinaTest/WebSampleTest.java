@@ -14,7 +14,7 @@ import com.solvd.CarinaTest.gui.pages.StudiesPage;
 import com.solvd.CarinaTest.gui.pages.SubjectsPage;
 
 public class WebSampleTest extends AbstractTest{
-	
+	/*
     private static final Logger LOGGER = Logger.getLogger(WebSampleTest.class);
     
     @Test(description = "Test HomePage")
@@ -126,5 +126,5 @@ public class WebSampleTest extends AbstractTest{
         // Click moodle link from footer panel
         graduatesPage.clickMoodleLinkFooterPanel();
     }
-    
+    */
 }

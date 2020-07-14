@@ -1,23 +1,19 @@
 {
     "id": "skip",
-    "name": "Tes2",
-    "last_name": "User",
-    "birth_date": "1959-04-02T00:00:00.000Z",
+    "name": "regex:[a-zA-Z]+",
+    "last_name": "regex:[a-zA-Z]+",
+    "birth_date": "regex:\\d{4}-\\d{2}-\\d{2}",
     "gender": null,
-    "document_type_id": 1,
-    "document_number": "2",
-    "email": "prueba2@gmail.com",
-    "password": "",
+    "document_type_id": "skip",
+    "document_number": "regex:[\\d]+",
+    "email": "regex:[a-zA-Z\\d\\_\\.]+@[a-z]+\\.[a-z]{2,4}",
+    "password": "skip",
     "city_id": null,
     "address": null,
     "weight": null,
     "height": null,
     "insurance_id": null,
     "insurance_number": null,
-    "diseases": [
-        
-    ],
-    "languages": [
-        
-    ]
+    "diseases": "skip",
+    "languages": "skip"
 }

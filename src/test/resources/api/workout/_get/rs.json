@@ -3,7 +3,7 @@
 	"device_user_id":5,
 	"medical_personnel_id": "skip",
 	"name":"Test Automation Workout",
-	"creation_date":"2020-06-30T00:00:00.000Z",
+	"creation_date":"regex:\\d{4}-\\d{2}-\\d{2}",
 	"difficulty":5,
 	"price":30,
 	"done":0,

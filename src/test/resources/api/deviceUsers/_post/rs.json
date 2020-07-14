@@ -1,5 +1,5 @@
 {
 	"auth": true,
-	"token": "skip",
-	"type": "skip"
+	"token": "regex:[a-zA-Z\\d]+",
+	"type": "regex:(?:d|m)"
 }
