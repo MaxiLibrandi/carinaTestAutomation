@@ -57,17 +57,18 @@ public class HomePage extends AbstractPage{
 		super(driver);
 	}
 
-	public void selectTitle(String title) {
+	public Boolean selectTitle(String title) {
         LOGGER.info("selecting '" + title + "' new...");
         for (ExtendedWebElement titlesLink : titlesList) {
             String currentNew = titlesLink.getText();
-            LOGGER.info("currentNew: " + currentNew);
+            LOGGER.info("current new: " + currentNew);
             if (title.equalsIgnoreCase(currentNew)) {
             	titlesLink.click();
-                LOGGER.info("Clicked");
-                return;
+                LOGGER.info("Clicked " + title);
+                return true;
             }
         }
+        return false;
     }
 	
 	public StudiesPage openStudiesPage() {

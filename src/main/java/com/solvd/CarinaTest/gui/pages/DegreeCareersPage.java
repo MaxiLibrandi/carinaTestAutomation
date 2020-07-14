@@ -44,17 +44,18 @@ public class DegreeCareersPage extends AbstractPage{
 		super(driver);
 	}
 	
-	public void selectCareer(String career) {
+	public Boolean selectCareer(String career) {
 		LOGGER.info("selecting '" + career + "' career...");
         for (ExtendedWebElement careerLink : careersList) {
             String currentCareer = careerLink.getText();
             LOGGER.info("Current career: " + currentCareer);
             if (career.equalsIgnoreCase(currentCareer)) {
             	careerLink.click();
-                LOGGER.info("Clicked");
-                return;
+                LOGGER.info("Clicked " + career);
+                return true;
             }
         }
+        return false;
 	}
 
 	public void clickGuaraniButtonHeaderButtons(){

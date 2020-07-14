@@ -1,10 +1,12 @@
 package com.solvd.CarinaTest;
 
-import org.apache.log4j.Logger;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import java.util.List;
 
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.CarinaTest.gui.pages.AcademicCalendarPage;
 import com.solvd.CarinaTest.gui.pages.DegreeCareersPage;
@@ -14,8 +16,19 @@ import com.solvd.CarinaTest.gui.pages.StudiesPage;
 import com.solvd.CarinaTest.gui.pages.SubjectsPage;
 
 public class WebSampleTest extends AbstractTest{
-	/*
-    private static final Logger LOGGER = Logger.getLogger(WebSampleTest.class);
+	// SELENOID COMMAND
+	//selenoid_windows_amd64.exe -conf ./browsers.json -disable-docker 
+    
+    @DataProvider(parallel = false, name = "DP1")
+    public static Object[][] dataprovider()
+    {
+        return new Object[][] {
+            { "Ingeniería de Sistemas" },
+            { "Analista Programador Universitario" },
+            { "Licenciatura en Ciencias Físicas" },
+            { "Profesorado en Informática" }
+        };
+    }
     
     @Test(description = "Test HomePage")
     @MethodOwner(owner = "Maxi")
@@ -27,14 +40,15 @@ public class WebSampleTest extends AbstractTest{
         
         // Select new title
         homePage = new HomePage(getDriver());
-        homePage.selectTitle("REHTO: Más De 800 Computadoras Recuperadas Ya Fueron Entregadas A Organismos E Instituciones De La Ciudad");
+        Assert.assertTrue(homePage.selectTitle("Mesas De Exámenes Finales Virtuales"), "Title was not found");
         
         // Come back to home page
         homePage.clickHeaderLogo();
         
-        // Search in search box
-        homePage.searchHeaderSearch("Argentina");
+        //Select another title
+        Assert.assertTrue(homePage.selectTitle("REHTO: Continuamos Acercando Tecnología A Distintas Instituciones"), "Title was not found");
     }
+    
     
     @Test(description = "Test Academic Calendar Page")
     @MethodOwner(owner = "Maxi")
@@ -47,17 +61,14 @@ public class WebSampleTest extends AbstractTest{
         // Open academic calendar page 
         AcademicCalendarPage academicCalendarPage = homePage.openAcademicCalendarPage();
         
-        // Get info from academic calendar page
-        LOGGER.info("Getting academic calendar info");
-        LOGGER.info(academicCalendarPage.getAcademicCalendarInfo());
-        
-        // Come back to home page using header logo
-        academicCalendarPage.clickHeaderLogo();
+        // Get info from academic calendar page and throw an assertion error if it is empty
+        Assert.assertNotEquals(academicCalendarPage.getAcademicCalendarInfo(), "", "Academic calendar info is not upload");
     }
     
-    @Test(description = "Test Degree Careers Page")
+    
+    @Test(description = "Test Degree Careers Page", dataProvider = "DP1")
     @MethodOwner(owner = "Maxi")
-    public void testDegreeCareersPage() {
+    public void testDegreeCareersPage(String careerName) {
 		// Open home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -67,15 +78,17 @@ public class WebSampleTest extends AbstractTest{
         DegreeCareersPage degreeCareersPage = homePage.openDegreeCareersPage();
         
         // Select career from careers list
-        degreeCareersPage.selectCareer("Analista Programador Universitario");
+        Assert.assertTrue(degreeCareersPage.selectCareer(careerName),"Degree career was not found");
         
         // Click guarani button from header buttons
         degreeCareersPage.clickGuaraniButtonHeaderButtons();
     }
-
-    @Test(description = "Test Subjects Page")
+    
+    
+    @Test(description = "Test Subjects Page", dataProvider = "DataProvider")
     @MethodOwner(owner = "Maxi")
-    public void testSubjectsPage() {
+    @XlsDataSourceParameters(path = "xls/data_provider.xlsx", sheet = "Subjects", dsUid = "TUID", dsArgs = "subjectName")
+    public void testSubjectsPage(String subjectName) {
 		// Open home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -85,7 +98,7 @@ public class WebSampleTest extends AbstractTest{
         SubjectsPage subjectsPage = homePage.openSubjectsPage();
         
         // Select subject from subjects list
-        subjectsPage.selectSubject("Bases de Datos I");
+        Assert.assertTrue(subjectsPage.selectSubject(subjectName),"Subject was not found");
         
         // Click new students link from header links
         subjectsPage.clickNewStudentsLinkHeaderLinks();
@@ -103,7 +116,9 @@ public class WebSampleTest extends AbstractTest{
         StudiesPage studiesPage = homePage.openStudiesPage();
         
         // Select studies new from news list
-        studiesPage.selectNewTitle("Toma Del Campus");
+        List<String> newsTitles = studiesPage.getNewsTitles();
+        Assert.assertFalse(newsTitles.isEmpty(), "News not found!");
+        Assert.assertTrue(newsTitles.stream().anyMatch(title -> title.equals("Toma Del Campus")),"New title now found");
         
         // Click university link from footer menu
         studiesPage.clickUniversityLinkFooterMenu();
@@ -121,10 +136,11 @@ public class WebSampleTest extends AbstractTest{
         GraduatesPage graduatesPage = homePage.openGraduatesPage();
         
         // Select social network from social networks list
-        graduatesPage.selectSocialNetwork("https://www.facebook.com/groups/graduados.exa.unicen/");
+        Assert.assertNotNull(graduatesPage.findSocialNetwork("facebook"));
+        Assert.assertNotEquals(graduatesPage.findSocialNetwork("twitter"),null);
+        Assert.assertNotNull(graduatesPage.findSocialNetwork("linkedin"));
         
         // Click moodle link from footer panel
         graduatesPage.clickMoodleLinkFooterPanel();
     }
-    */
 }

@@ -1,5 +1,6 @@
 package com.solvd.CarinaTest.gui.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -44,17 +45,14 @@ public class StudiesPage extends AbstractPage{
 		super(driver);
 	}
 	
-	public void selectNewTitle(String title) {
-        LOGGER.info("selecting '" + title + "' new...");
+	public List<String> getNewsTitles() {
+		List<String> newsTitles = new ArrayList<String>();
         for (ExtendedWebElement titlesLink : newsList) {
             String currentNew = titlesLink.getText();
-            LOGGER.info("currentNew: " + currentNew);
-            if (title.equalsIgnoreCase(currentNew)) {
-            	titlesLink.click();
-                LOGGER.info("Clicked" + currentNew);
-                return;
-            }
+            LOGGER.info("current new title: " + currentNew);
+            newsTitles.add(currentNew);
         }
+        return newsTitles;
     }
 	
 	public void clickUniversityLinkFooterMenu() {

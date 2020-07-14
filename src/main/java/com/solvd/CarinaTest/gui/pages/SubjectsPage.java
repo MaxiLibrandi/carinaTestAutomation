@@ -44,17 +44,18 @@ public class SubjectsPage extends AbstractPage{
 		super(driver);
 	}
 	
-	public void selectSubject(String subject) {
+	public Boolean selectSubject(String subject) {
 		LOGGER.info("selecting '" + subject + "' subject...");
         for (ExtendedWebElement subjectLink : subjectsList) {
             String currentSubject = subjectLink.getText();
             LOGGER.info("current subject: " + currentSubject);
             if (subject.equalsIgnoreCase(currentSubject)) {
             	subjectLink.click();
-                LOGGER.info("Clicked" + currentSubject);
-                return;
+                LOGGER.info("Clicked " + currentSubject);
+                return true;
             }
         }
+        return false;
 	}
 	
 	public void clickNewStudentsLinkHeaderLinks() {

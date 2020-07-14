@@ -1,6 +1,8 @@
 package com.solvd.CarinaTest;
 
 import org.testng.annotations.Test;
+
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.CarinaTest.api.deviceUser.GetDeviceUserMethod;
@@ -17,8 +19,8 @@ import com.solvd.CarinaTest.api.workout.PutWorkoutMethod;
 
 import io.restassured.path.json.JsonPath;
 
-public class APISampleTest implements ILoginService{
-	
+public class APISampleTest extends AbstractTest implements ILoginService{
+	/*
 	@Test(description = "Test GET Device User")
     @MethodOwner(owner = "Maxi")
     public void testGetDeviceUser() {
@@ -117,5 +119,5 @@ public class APISampleTest implements ILoginService{
         deleteEmergencyContactMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteEmergencyContactMethod.callAPI();
     }
-    
+    */
 }

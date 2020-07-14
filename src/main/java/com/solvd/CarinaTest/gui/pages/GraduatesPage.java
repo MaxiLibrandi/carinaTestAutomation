@@ -44,17 +44,17 @@ public class GraduatesPage extends AbstractPage{
 		super(driver);
 	}
 	
-	public void selectSocialNetwork(String socialNetwork) {
-        LOGGER.info("selecting '" + socialNetwork + "' social network...");
+	public String findSocialNetwork(String socialNetwork) {
+        LOGGER.info("looking for '" + socialNetwork + "' social network...");
         for (ExtendedWebElement socialNetworkLink : socialNetworkList) {
             String currentSocialNetwork = socialNetworkLink.getAttribute("href");
-            LOGGER.info("currentNew: " + currentSocialNetwork);
-            if (socialNetwork.equalsIgnoreCase(currentSocialNetwork)) {
-            	socialNetworkLink.click();
-                LOGGER.info("Clicked" + currentSocialNetwork);
-                return;
+            LOGGER.info("current social network: " + currentSocialNetwork);
+            if (currentSocialNetwork.contains(socialNetwork)) {
+                LOGGER.info("Found " + currentSocialNetwork);
+                return currentSocialNetwork;
             }
         }
+        return null;
     }
 
 	public void clickMoodleLinkFooterPanel() {
