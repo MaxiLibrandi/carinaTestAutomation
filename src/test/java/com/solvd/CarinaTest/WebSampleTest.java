@@ -16,8 +16,6 @@ import com.solvd.CarinaTest.gui.pages.StudiesPage;
 import com.solvd.CarinaTest.gui.pages.SubjectsPage;
 
 public class WebSampleTest extends AbstractTest{
-	// SELENOID COMMAND
-	//selenoid_windows_amd64.exe -conf ./browsers.json -disable-docker 
     
     @DataProvider(parallel = false, name = "DP1")
     public static Object[][] dataprovider()
@@ -28,7 +26,7 @@ public class WebSampleTest extends AbstractTest{
             { "Licenciatura en Ciencias Físicas" },
             { "Profesorado en Informática" }
         };
-    }
+    } 
     
     @Test(description = "Test HomePage")
     @MethodOwner(owner = "Maxi")
@@ -40,15 +38,17 @@ public class WebSampleTest extends AbstractTest{
         
         // Select new title
         homePage = new HomePage(getDriver());
-        Assert.assertTrue(homePage.selectTitle("Mesas De Exámenes Finales Virtuales"), "Title was not found");
+        Assert.assertTrue(homePage.selectTitle("RedUnCI: Reunión Plenaria 2020"), "Title was not found");
         
         // Come back to home page
         homePage.clickHeaderLogo();
         
         //Select another title
-        Assert.assertTrue(homePage.selectTitle("REHTO: Continuamos Acercando Tecnología A Distintas Instituciones"), "Title was not found");
+        Assert.assertTrue(homePage.selectTitle("RedUnCI: Mesas De Trabajo"), "Title was not found");
+        
+        //Test search box is clicked
+        homePage.searchHeader("Argentina");
     }
-    
     
     @Test(description = "Test Academic Calendar Page")
     @MethodOwner(owner = "Maxi")
@@ -63,8 +63,10 @@ public class WebSampleTest extends AbstractTest{
         
         // Get info from academic calendar page and throw an assertion error if it is empty
         Assert.assertNotEquals(academicCalendarPage.getAcademicCalendarInfo(), "", "Academic calendar info is not upload");
-    }
     
+        //Come back to home page
+        academicCalendarPage.clickHeaderLogo();
+    }
     
     @Test(description = "Test Degree Careers Page", dataProvider = "DP1")
     @MethodOwner(owner = "Maxi")
@@ -81,7 +83,7 @@ public class WebSampleTest extends AbstractTest{
         Assert.assertTrue(degreeCareersPage.selectCareer(careerName),"Degree career was not found");
         
         // Click guarani button from header buttons
-        degreeCareersPage.clickGuaraniButtonHeaderButtons();
+        degreeCareersPage.clickGuaraniButtonHeader();
     }
     
     
@@ -101,7 +103,7 @@ public class WebSampleTest extends AbstractTest{
         Assert.assertTrue(subjectsPage.selectSubject(subjectName),"Subject was not found");
         
         // Click new students link from header links
-        subjectsPage.clickNewStudentsLinkHeaderLinks();
+        subjectsPage.clickNewStudentsLinkHeader();
     }
     
     @Test(description = "Test Studies Page")
@@ -143,4 +145,5 @@ public class WebSampleTest extends AbstractTest{
         // Click moodle link from footer panel
         graduatesPage.clickMoodleLinkFooterPanel();
     }
+    
 }

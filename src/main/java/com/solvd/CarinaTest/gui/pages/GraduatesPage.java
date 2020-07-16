@@ -10,28 +10,17 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.solvd.CarinaTest.gui.components.FooterMenu;
 import com.solvd.CarinaTest.gui.components.FooterPanel;
-import com.solvd.CarinaTest.gui.components.HeaderButtons;
-import com.solvd.CarinaTest.gui.components.HeaderLinks;
-import com.solvd.CarinaTest.gui.components.HeaderLogo;
-import com.solvd.CarinaTest.gui.components.HeaderSearch;
+import com.solvd.CarinaTest.gui.components.FooterPanels;
+import com.solvd.CarinaTest.gui.components.Header;
 
 public class GraduatesPage extends AbstractPage{
 
     private static final Logger LOGGER = Logger.getLogger(GraduatesPage.class);
     
-    @FindBy(xpath = "//div[contains(@class,'header__botonera')]")
-    private HeaderButtons headerButtons;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__region')]")
-    private HeaderLinks headerLinks;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__logo')]")
-    private HeaderLogo headerLogo;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__botonera')]")
-    private HeaderSearch headerSearch;
-    
-    @FindBy(xpath = "//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]")
+    @FindBy(xpath = "//div[@class='header-wrapper']")
+    private Header header;
+
+    @FindBy(xpath = "//div[@class='panel-pane pane-views pane-carrousel']")
     private FooterPanel footerPanel;
     
     @FindBy(xpath = "//footer")
@@ -58,6 +47,6 @@ public class GraduatesPage extends AbstractPage{
     }
 
 	public void clickMoodleLinkFooterPanel() {
-		footerPanel.openMoodlePage();
+		footerPanel.clickPanel(FooterPanels.MOODLE.getPanelName());
 	}
 }

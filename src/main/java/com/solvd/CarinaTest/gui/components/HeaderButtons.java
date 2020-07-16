@@ -1,59 +1,20 @@
 package com.solvd.CarinaTest.gui.components;
 
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.solvd.CarinaTest.gui.pages.HomePage;
-
-public class HeaderButtons extends AbstractUIObject{
+public enum HeaderButtons {
+	HOME("Inicio"),
+	GUARANI("SIU"),
+	PHONES("Teléfonos"),
+	TEACHERS("docentes"),
+	STUDENTS("alumnos"),
+	DOCUMENTS("Documentos");
 	
-	@FindBy(xpath = ".//li[contains(@class,'home')]//a")
-	private ExtendedWebElement homeButton; 
+	private String buttonName;
 	
-	@FindBy(xpath = ".//li[contains(@class,'siuguarani')]//a")
-	private ExtendedWebElement guaraniButton;
-	
-	@FindBy(xpath = ".//li[contains(@class,'telefonos')]//a")
-	private ExtendedWebElement phonesButton;
-	
-	@FindBy(xpath = ".//li[contains(@class,'webmailunicen')]//a")
-	private ExtendedWebElement teachersButton;
-	
-	@FindBy(xpath = ".//li[contains(@class,'mailalumnos')]//a")
-	private ExtendedWebElement studentsButton;
-	
-	@FindBy(xpath = ".//li[contains(@class,'documentos')]//a")
-	private ExtendedWebElement documentsButton;
-	
-	public HeaderButtons(WebDriver driver, SearchContext searchContext) {
-		super(driver, searchContext);
+	HeaderButtons(String buttonName) {
+		this.buttonName = buttonName;
 	}
 	
-	public HomePage openHomePage() {
-		homeButton.click();
-		return new HomePage(driver);
-	}
-	
-	public void openGuaraniPage() {
-		guaraniButton.click();
-	}
-	
-	public void openPhonesPage() {
-		phonesButton.click();
-	}
-	
-	public void openTeachersPage() {
-		teachersButton.click();
-	}
-	
-	public void openStudentsPage() {
-		studentsButton.click();
-	}
-	
-	public void openDocumentsPage() {
-		documentsButton.click();
+	public String getButtonName() {
+		return buttonName;
 	}
 }

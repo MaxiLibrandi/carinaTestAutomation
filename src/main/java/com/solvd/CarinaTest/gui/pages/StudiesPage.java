@@ -9,30 +9,19 @@ import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.CarinaTest.gui.components.FooterLinks;
 import com.solvd.CarinaTest.gui.components.FooterMenu;
 import com.solvd.CarinaTest.gui.components.FooterPanel;
-import com.solvd.CarinaTest.gui.components.HeaderButtons;
-import com.solvd.CarinaTest.gui.components.HeaderLinks;
-import com.solvd.CarinaTest.gui.components.HeaderLogo;
-import com.solvd.CarinaTest.gui.components.HeaderSearch;
+import com.solvd.CarinaTest.gui.components.Header;
 
 public class StudiesPage extends AbstractPage{
 
     private static final Logger LOGGER = Logger.getLogger(StudiesPage.class);
     
-    @FindBy(xpath = "//div[contains(@class,'header__botonera')]")
-    private HeaderButtons headerButtons;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__region')]")
-    private HeaderLinks headerLinks;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__logo')]")
-    private HeaderLogo headerLogo;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__botonera')]")
-    private HeaderSearch headerSearch;
-    
-    @FindBy(xpath = "//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]")
+    @FindBy(xpath = "//div[@class='header-wrapper']")
+    private Header header;
+
+    @FindBy(xpath = "//div[@class='panel-pane pane-views pane-carrousel']")
     private FooterPanel footerPanel;
     
     @FindBy(xpath = "//footer")
@@ -56,6 +45,6 @@ public class StudiesPage extends AbstractPage{
     }
 	
 	public void clickUniversityLinkFooterMenu() {
-		footerMenu.openUniversityPage();
+		footerMenu.clickLink(FooterLinks.UNIVERSITY.getLinkName());
 	}
 }

@@ -10,28 +10,17 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.solvd.CarinaTest.gui.components.FooterMenu;
 import com.solvd.CarinaTest.gui.components.FooterPanel;
-import com.solvd.CarinaTest.gui.components.HeaderButtons;
+import com.solvd.CarinaTest.gui.components.Header;
 import com.solvd.CarinaTest.gui.components.HeaderLinks;
-import com.solvd.CarinaTest.gui.components.HeaderLogo;
-import com.solvd.CarinaTest.gui.components.HeaderSearch;
 
 public class HomePage extends AbstractPage{
 
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
     
-    @FindBy(xpath = "//div[contains(@class,'header__botonera')]")
-    private HeaderButtons headerButtons;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__region')]")
-    private HeaderLinks headerLinks;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__logo')]")
-    private HeaderLogo headerLogo;
-    
-    @FindBy(xpath = "//div[contains(@class,'header__botonera')]")
-    private HeaderSearch headerSearch;
-    
-    @FindBy(xpath = "//div[@id=\"views_slideshow_cycle_div_carrousel-block_0\"]")
+    @FindBy(xpath = "//div[@class='header-wrapper']")
+    private Header header;
+
+    @FindBy(xpath = "//div[@class='panel-pane pane-views pane-carrousel']")
     private FooterPanel footerPanel;
     
     @FindBy(xpath = "//footer")
@@ -48,7 +37,6 @@ public class HomePage extends AbstractPage{
 	
 	@FindBy(xpath = "//ul[contains(@class,'menu')]//li[contains(@class,'menu-mlid-1633')]//a")
 	private ExtendedWebElement subjectsLink;
-	
     
     @FindBy(xpath = "//div[contains(@id,'bloque-noticia')]//div[contains(@class, 'views-field-title')]//a")
 	private List<ExtendedWebElement> titlesList; 
@@ -92,14 +80,15 @@ public class HomePage extends AbstractPage{
 	}
 	
 	public GraduatesPage openGraduatesPage() {
-		return headerLinks.openGraduatesPage();
+		header.clickLink(HeaderLinks.GRADUATES.getLinkName());
+		return new GraduatesPage(getDriver());
 	}
 	
 	public HomePage clickHeaderLogo() {
-		return headerLogo.openHomePage();
+		return header.clickLogoHomePage();
 	}
 	
-	public void searchHeaderSearch(String query) {
-		headerSearch.search(query);
+	public void searchHeader(String query) {
+		header.search(query);
 	}
 }

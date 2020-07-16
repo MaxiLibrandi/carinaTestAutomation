@@ -1,66 +1,21 @@
 package com.solvd.CarinaTest.gui.components;
 
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.solvd.CarinaTest.gui.pages.GraduatesPage;
-
-public class HeaderLinks extends AbstractUIObject{
-
-	@FindBy(xpath = ".//li[contains(@class,'1634')]//a")
-	private ExtendedWebElement newStudentsLink;
+public enum HeaderLinks {
+	NEW_STUDENTS("Ingresantes"),
+	STUDENTS("Estudiantes"),
+	TEACHERS("Docentes"),
+	NO_TEACHERS("No Docentes"),
+	GRADUATES("Graduados"),
+	SCHOOLS("Escuelas"),
+	ENTERPRISES("Empresas");
 	
-	@FindBy(xpath = ".//li[contains(@class,'1638')]//a")
-	private ExtendedWebElement studentsLink;
+	private String linkName;
 	
-	@FindBy(xpath = ".//li[contains(@class,'1643')]//a")
-	private ExtendedWebElement teachersLink;
-	
-	@FindBy(xpath = ".//li[contains(@class,'1648')]//a")
-	private ExtendedWebElement notTeachersLink;
-	
-	@FindBy(xpath = ".//li[contains(@class,'1653')]//a")
-	private ExtendedWebElement graduatesLink;
-	
-	@FindBy(xpath = ".//li[contains(@class,'1655')]//a")
-	private ExtendedWebElement schoolsLink;
-	
-	@FindBy(xpath = ".//li[contains(@class,'1657')]//a")
-	private ExtendedWebElement enterprisesLink;
-	
-	public HeaderLinks(WebDriver driver, SearchContext searchContext) {
-		super(driver, searchContext);
+	HeaderLinks(String linkName) {
+		this.linkName = linkName;
 	}
 	
-	public void openNewStudentsPage() {
-		newStudentsLink.click();
-	}
-	
-	public void openStudentsPage() {
-		studentsLink.click();
-	}
-	
-	public void openTeachersPage() {
-		teachersLink.click();
-	}
-	
-	public void openNotTeachersPage() {
-		notTeachersLink.click();
-	}
-	
-	public GraduatesPage openGraduatesPage() {
-		graduatesLink.click();
-		return new GraduatesPage(getDriver());
-	}
-	
-	public void openSchoolsPage() {
-		schoolsLink.click();
-	}
-	
-	public void openEnterprisesPage() {
-		enterprisesLink.click();
+	public String getLinkName() {
+		return linkName;
 	}
 }

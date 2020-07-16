@@ -1,5 +1,8 @@
 package com.solvd.CarinaTest.gui.components;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -8,44 +11,24 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class FooterPanel extends AbstractUIObject{
+
+	private static final Logger LOGGER = Logger.getLogger(FooterPanel.class);
 	
-	@FindBy(xpath ="./div[1]/div[2]/div/a")
-	private ExtendedWebElement guaraniPanel;
-
-	@FindBy(xpath ="./div[2]/div[2]/div/a")
-	private ExtendedWebElement moodlePanel;
-
-	@FindBy(xpath ="./div[3]/div[2]/div/a")
-	private ExtendedWebElement unicenPanel;
-
-	@FindBy(xpath ="./div[4]/div[2]/div/a")
-	private ExtendedWebElement cefcePanel;
-
-	@FindBy(xpath ="./div[5]/div[2]/div/a")
-	private ExtendedWebElement libraryPanel;
+	@FindBy(xpath ="./div//div[2]/div/a")
+	private List<ExtendedWebElement> panels;
 	
 	public FooterPanel(WebDriver driver, SearchContext searchContext) {
 		super(driver, searchContext);
 	}
 
-	public void openGuaraniPage() {
-		guaraniPanel.click();
+	public void clickPanel(String panelHref) {
+		for(ExtendedWebElement panel : panels) {
+			String currentPanelHref = panel.getAttribute("href"); 
+			LOGGER.info("Current panel " + currentPanelHref); 
+			if(currentPanelHref.contains(panelHref)) {
+				panel.click();
+				return;
+			}
+		}
 	}
-	
-	public void openMoodlePage() {
-		moodlePanel.click();
-	}
-	
-	public void openUnicenPage() {
-		unicenPanel.click();
-	}
-	
-	public void openCefcePage() {
-		cefcePanel.click();
-	}
-	
-	public void openLibraryPage() {
-		libraryPanel.click();
-	}
-
 }
